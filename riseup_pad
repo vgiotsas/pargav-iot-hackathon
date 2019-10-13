@@ -1,0 +1,98 @@
+PARGAV
+Privacy Aware Research of Generic Anomalies and Visualisations
+
+Robert https://github.com/robert-kisteleki
+Antonios https://github.com/akoskinas/
+Peter
+Petros
+Anna
+Grissel https://github.com/grisselfaura
+
+Github repository:
+    https://github.com/vgiotsas/pargav-iot-hackathon
+   
+Slack channel:
+iot-hackathon-rdam.slack.com
+
+web stuff: https://kistel.eu/static/PARGAV/
+
+
+
+0. PRE-PROCESSING
+
+per device CSV format: 1 minute sampling
+timestamp (unix epoch), bandwidth up(kbits/s), bandwidth down(kbits/s), connections made, different ports accessed, different IPs accessed
+
+DNS?
+
+3 CSVs per device:
+    1) idle
+    2) Controlled:
+        - power
+        - activities
+    3) Uncontrolled 
+
+Example: 
+
+tv.LAN.uncontrolled.csv:
+1570873590, 5, 2000, 10, 1, 1
+1570873650, 4, 1900, 8, 1, 1
+
+tv.WAN.idle.csv:
+1570873590, 5, 2000, 10, 1, 1
+1570873650, 4, 1900, 8, 1, 1
+
+roomba.LAN.idle.csv
+1570873590, 1, 1, 1, 12
+1570873590, 2, 2, 2, 2
+
+roomba.WAN.controlled.csv
+1570873590, 1, 1, 1, 1
+1570873590, 2, 2, 2, 2
+
+fake data:
+https://kistel.eu/static/PARGAV/fakedata.py
+https://kistel.eu/static/PARGAV/tv.LAN.uncontrolled.csv
+https://kistel.eu/static/PARGAV/tv.WAN.uncontrolled.csv
+https://kistel.eu/static/PARGAV/tv.LAN.uncontrolled-withsignal.csv
+https://kistel.eu/static/PARGAV/tv.WAN.uncontrolled-withsignal.csv
+
+
+1. VISUALISATION
+
+https://kistel.eu/static/PARGAV/
+
+
+times = pd.to_datetime(df.timestamp_col)
+
+DATA:
+https://drive.google.com/file/d/1ZCa5j22EF_3W2qe7xIouYTkRJZ0NzVAB/view
+
+
+TOOLS FOR PRE-PROCESS:
+https://github.com/NEU-SNS/intl-iot/tree/master/destination
+
+Libraries anomaly detection:
+
+Vasilis with Luminol, Petros with Prophet
+- https://facebook.github.io/prophet/docs/quick_start.html
+- https://towardsdatascience.com/anomaly-detection-time-series-4c661f6f165f
+- https://github.com/linkedin/luminol
+- https://github.com/etsy/skyline
+
+Just something to look into later:
+https://en.wikipedia.org/wiki/IP_Flow_Information_Export
+
+
+
+### DATA Processing ###
+
+tshark -r 2019-04-25_idle.pcap -T fields -e frame.number -e frame.time_epoch -e eth.src -e eth.dst -e ip.src -e ip.dst -e ip.proto -e tcp.srcport -e udp.srcport -e tcp.dstport -e udp.dstport -e frame.len -E header=y -E separator=, -E quote=n -E occurrence=f > ~/Desktop/test.csv
+
+https://drive.google.com/drive/folders/1CGTWoc0lzrmEZmlUzyVO-SNCOKbVte6t?usp=sharing
+
+NAME OF THE DATA: 
+Mon(IoT)r Testbed https://moniotrlab.ccis.neu.edu/tools/
+
+Presentation: https://drive.google.com/drive/folders/1UKpD2_cv1t2Js-FDzLd8yIact_UjLmsu
+
