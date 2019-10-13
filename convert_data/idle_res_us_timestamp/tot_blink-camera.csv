@@ -1,0 +1,2 @@
+time,ip_src,ip_dst,tcp_srcport,tcp_dstport,udp_srcport,udp_dstport,uplink_kbs,downlink_kbs
+1556268780,5,5,2,2,4,4,0.3316,0.6732
