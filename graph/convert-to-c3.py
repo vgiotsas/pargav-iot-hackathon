@@ -25,15 +25,18 @@ def convert():
     i = 0
     reader = csv.reader(sys.stdin)
     for (ts, bw_up, bw_dn, conn, target, port) in reader:
-        if i%ts_every == 0:
-            xs.append(datetime.utcfromtimestamp(int(ts)).strftime(timefmt))
-        else:
-            xs.append('')
-        bw_ups.append(float(bw_up))
-        bw_dns.append(float(bw_dn))
-        conns.append(float(conn))
-        targets.append(float(target))
-        ports.append(float(port))
+        try:
+            if i%ts_every == 0:
+                xs.append(datetime.utcfromtimestamp(int(ts)).strftime(timefmt))
+            else:
+                xs.append('')
+            bw_ups.append(float(bw_up))
+            bw_dns.append(float(bw_dn))
+            conns.append(float(conn))
+            targets.append(float(target))
+            ports.append(float(port))
+        except:
+            pass
         i += 1
 
     make_output(args.out+'-bw.js', chart='chart_bw_'+args.out, data1=bw_ups, data2=bw_dns)
