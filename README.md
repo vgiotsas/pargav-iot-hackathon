@@ -3,7 +3,7 @@ Privacy Aware Research of Generic Anomalies and Visualisations
 
 RIPE NCC IoT Hackathon Project
 
-## Data format
+## Format of Synthetic Data
 
 per device CSV format: 1 minute sampling
 ```
@@ -29,3 +29,7 @@ roomba.WAN.controlled.csv
 ```1570873590, 1, 1, 1, 1
 1570873590, 2, 2, 2, 2
 ```
+
+## Attack Data
+
+https://archive.ics.uci.edu/ml/machine-learning-databases/00442/
